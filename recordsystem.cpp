@@ -1,5 +1,7 @@
 #include<iostream>
 #include<conio.h>
+#include<windows.h>
+#include<stdlib.h>
 using namespace std;
 class Node
 {
@@ -8,7 +10,6 @@ class Node
 	    string name;
 	    long long int contactno;
 	    char gender;
-	    string faculty;
 	    float marks,per;
 	    Node *next_add;
 };
@@ -16,13 +17,16 @@ class Linked_List
 {
 	public:
 		Node *head = NULL; 
+		
 		void Insert(){
+			HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 			int r;
 			string n;
 			char g;
 			long long cn;
-			string f;
 			float m;
+			
+			SetConsoleTextAttribute(h,6);
 			cout<<"\n\n Enter Roll no. : ";
 			cin>>r;
 			cout<<"\n\n Enter Name: ";
@@ -31,8 +35,6 @@ class Linked_List
 			cin>>g;
 			cout<<"\n\n Enter Contact No.: ";
 			cin>>cn;
-			cout<<"\n\n Which Faculty? ";
-			cin>>f;
 			cout<<"\n Full Marks = 600";
 			cout<<"\n\n Enter Scored Marks: ";
 			cin>>m;
@@ -41,7 +43,6 @@ class Linked_List
 			new_node -> name = n;
 			new_node -> marks = m;
 			new_node -> contactno = cn;
-			new_node -> faculty = f;
 			new_node -> gender = g;
 			new_node -> per = m/600*100;
 			new_node -> next_add = NULL;
@@ -61,23 +62,26 @@ class Linked_List
 		
 		void Search()
 		{
+			HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 			if(head == NULL){
-				cout<<"\n\n List is Empty";
+				SetConsoleTextAttribute(h,4);
+				cout<<"\n\n !!! List is Empty !!!";
 			}
 			else
 			{
 				int r, found = 0;
+				SetConsoleTextAttribute(h,4);
 				cout<<"\n\n Enter roll no for search: ";
 				cin>>r;
 				Node *ptr = head;
 				while(ptr !=NULL)
 				{
 					if(r == ptr -> rollno){
+						SetConsoleTextAttribute(h,6);
 						cout <<"\n\n Roll No :"<<ptr -> rollno;
 						cout <<"\n\n Name : "<<ptr -> name;
 						cout <<"\n\n Gender : "<<ptr -> gender;
 						cout <<"\n\n Contact No : "<<ptr -> contactno;
-						cout <<"\n\n Faculty : "<< ptr -> faculty;
 						cout <<"\n\n Marks : "<< ptr -> marks;
 						cout <<"\n\n Percentage % : "<< ptr->per;
 						found++;
@@ -92,9 +96,11 @@ class Linked_List
 		}
 	    void Count()
 	    {
+	    	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	    	if(head == NULL)
 	    	{
-	    		cout<<"\n\n List is Empty...";
+	    		SetConsoleTextAttribute(h,4);
+	    		cout<<"\n\n !!! List is Empty !!! ";
 			}
 			else
 			{
@@ -105,13 +111,16 @@ class Linked_List
 					c++;
 					ptr = ptr -> next_add;
 				}
+				SetConsoleTextAttribute(h,3);
 				cout << "\n\n Total No. of Students: "<<c;
 			}
 		}
 		void Update()
 		{
+			HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 			if(head == NULL){
-				cout<<"\n\n List is Empty";
+				SetConsoleTextAttribute(h,4);
+	    		cout<<"\n\n !!! List is Empty !!! ";
 			}
 			else
 			{
@@ -132,8 +141,6 @@ class Linked_List
 						cin>>ptr -> gender;
 						cout<<"\n\n Enter Contact No.: ";
 						cin>>ptr -> contactno;
-						cout<<"\n\n Which Faculty? ";
-						cin>>ptr -> faculty;
 						cout<<"\n Full Marks = 600";
 						cout<<"\n\n Enter marks: ";
 						cin>>ptr -> marks;
@@ -151,8 +158,10 @@ class Linked_List
 	    }
 	    void Delete()
 		{
+			HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 			if(head == NULL){
-				cout<<"\n\n List is Empty";
+				SetConsoleTextAttribute(h,4);
+	    		cout<<"\n\n !!! List is Empty !!! ";
 			}
 			else
 			{
@@ -194,19 +203,21 @@ class Linked_List
 	    }
 	    void Display()
 	    {
+	    	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 			if(head == NULL){
-				cout<<"\n\n List is Empty";
+				SetConsoleTextAttribute(h,4);
+	    		cout<<"\n\n !!! List is Empty !!! ";
 			}
 			else
 			{
 				Node *ptr = head;
 				while(ptr !=NULL)
 				{
+					SetConsoleTextAttribute(h,6);
 					cout <<"\n\n Roll No :"<<ptr -> rollno;
 					cout <<"\n\n Name : "<<ptr -> name;
 					cout <<"\n\n Gender: "<<ptr -> gender;
 					cout <<"\n\n Contact No. :"<<ptr -> contactno;
-					cout <<"\n\n Faculty : "<< ptr -> faculty;
 					cout <<"\n\n Marks : "<< ptr -> marks;
 					cout <<"\n\n Percentage % : "<< ptr->per;
 					cout <<"\n\n----------------------------";
@@ -217,13 +228,20 @@ class Linked_List
 		}
 };
 int main(){
+	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	Linked_List obj;
 	top:
 	system("cls");
 	int choice;
-	cout <<"\n\n**********STUDENTS MANAGEMENT SYSTEM**********";
-	cout<<"\n\n";
+
+	SetConsoleTextAttribute(h,12);
+	cout <<"\n STUDENTS MANAGEMENT SYSTEM :";
+	cout<<"\n";
+	
+	SetConsoleTextAttribute(h,11);
 	cout <<"\n Enter:";
+	
+	SetConsoleTextAttribute(h,7);
 	cout <<"\n1. Insert Record";
 	cout <<"\n2. Search Record";
 	cout <<"\n3. Count No of Students";
@@ -232,6 +250,7 @@ int main(){
 	cout <<"\n6. Display all record";
 	cout <<"\n7. exit";
 	
+	SetConsoleTextAttribute(h,11);
 	cout <<"\n\n Enter Your Choice: ";
 	cin>> choice;
 	switch(choice)
@@ -264,6 +283,7 @@ int main(){
 		case 7:
 			exit(0);
 		default:
+			SetConsoleTextAttribute(h,4);
 			cout<<"\n\n Invalid Choice....Please try again!!!";
 	}
 	getch();
