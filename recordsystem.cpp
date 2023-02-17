@@ -13,7 +13,7 @@ class Node
 	    float marks,per;
 	    Node *next_add;
 };
-class Linked_List
+class Record_System
 {
 	public:
 		Node *head = NULL; 
@@ -29,14 +29,14 @@ class Linked_List
 			SetConsoleTextAttribute(h,6);
 			cout<<"\n\n Enter Roll no. : ";
 			cin>>r;
-			cout<<"\n\n Enter Name: ";
+			cout<<"\n\n Enter Name : ";
 			cin>>n;
-			cout<<"\n\n Enter 'M'for male and 'F'for female: ";
+			cout<<"\n\n Enter 'M'for male and 'F'for female : ";
 			cin>>g;
-			cout<<"\n\n Enter Contact No.: ";
+			cout<<"\n\n Enter Contact No. : ";
 			cin>>cn;
 			cout<<"\n Full Marks = 600";
-			cout<<"\n\n Enter Scored Marks: ";
+			cout<<"\n\n Enter Scored Marks : ";
 			cin>>m;
 			Node *new_node = new Node;
 			new_node -> rollno = r;
@@ -57,7 +57,7 @@ class Linked_List
 				}
 				ptr -> next_add = new_node;
 			}
-			cout<<"\n\n New Node Inserted Successfully....";
+			cout<<"\n\n New Record Inserted Successfully....";
 		}
 		
 		void Search()
@@ -83,7 +83,13 @@ class Linked_List
 						cout <<"\n\n Gender : "<<ptr -> gender;
 						cout <<"\n\n Contact No : "<<ptr -> contactno;
 						cout <<"\n\n Marks : "<< ptr -> marks;
-						cout <<"\n\n Percentage % : "<< ptr->per;
+						if(ptr -> marks > 600){
+							cout << "\n\n Percentage % : Out of range";
+						}else
+						{
+							cout <<"\n\n Percentage % : "<< ptr->per<<"%";
+						}
+						
 						found++;
 					}
 					ptr = ptr -> next_add;
@@ -214,13 +220,18 @@ class Linked_List
 				while(ptr !=NULL)
 				{
 					SetConsoleTextAttribute(h,6);
-					cout <<"\n\n Roll No :"<<ptr -> rollno;
+					cout <<"\n\n Roll No. :"<<ptr -> rollno;
 					cout <<"\n\n Name : "<<ptr -> name;
-					cout <<"\n\n Gender: "<<ptr -> gender;
-					cout <<"\n\n Contact No. :"<<ptr -> contactno;
+					cout <<"\n\n Gender : "<<ptr -> gender;
+					cout <<"\n\n Contact No. : "<<ptr -> contactno;
 					cout <<"\n\n Marks : "<< ptr -> marks;
-					cout <<"\n\n Percentage % : "<< ptr->per;
-					cout <<"\n\n----------------------------";
+					if(ptr -> marks > 600){
+							cout << "\n\n Percentage % : Out of range";
+					}else
+					{
+						cout <<"\n\n Percentage % : "<< ptr->per<<"%";
+					}
+					cout <<"\n\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*";
 					
 					ptr = ptr -> next_add;
 				}
@@ -229,13 +240,13 @@ class Linked_List
 };
 int main(){
 	HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	Linked_List obj;
+	Record_System obj;
 	top:
 	system("cls");
 	int choice;
 
 	SetConsoleTextAttribute(h,12);
-	cout <<"\n STUDENTS MANAGEMENT SYSTEM :";
+	cout <<"\n STUDENTS RECORD SYSTEM :";
 	cout<<"\n";
 	
 	SetConsoleTextAttribute(h,11);
