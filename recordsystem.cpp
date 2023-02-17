@@ -150,7 +150,7 @@ class Record_System
 						cout<<"\n Full Marks = 600";
 						cout<<"\n\n Enter marks: ";
 						cin>>ptr -> marks;
-						ptr -> per = ptr -> marks/100 *100;
+						ptr -> per = ptr -> marks/600 *100;
 						cout <<"\n\n Record Updated Successfully...";
 						found++;
 					}
